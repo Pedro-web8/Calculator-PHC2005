@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle dm3f42oy</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora PHC2005</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #000; /* Fundo preto */
+            color: #fff; /* Texto branco */
+        }
+        .container {
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #C80F2E; /* Bordas vermelhas */
+            border-radius: 10px;
+            background-color: #000; /* Fundo preto */
+            box-shadow: 0 0 10px rgba(200, 15, 46, 0.5); /* Sombra vermelha */
+        }
+        h2 {
+            color: #C80F2E; /* Título vermelho */
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff; /* Texto branco */
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #C80F2E; /* Bordas vermelhas */
+            border-radius: 5px;
+            background-color: #000; /* Fundo preto */
+            color: #fff; /* Texto branco */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #C80F2E; /* Botão vermelho */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #A00C25; /* Vermelho mais escuro ao passar o mouse */
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            color: #fff; /* Texto branco */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora PHC2005</h2>
+    <label for="principal">Capital Inicial (P):</label>
+    <input type="number" id="principal" placeholder="Digite o capital inicial">
+
+    <label for="rate">Taxa de Juros (%):</label>
+    <input type="number" id="rate" placeholder="Digite a taxa de juros">
+
+    <label for="period">Período de Tempo:</label>
+    <input type="number" id="period" placeholder="Digite o período">
+
+    <label for="unit">Unidade de Tempo:</label>
+    <select id="unit">
+        <option value="anos">Anos</option>
+        <option value="meses">Meses</option>
+    </select>
+
+    <button onclick="calcularJurosCompostos()">Calcular</button>
+
+    <div class="result" id="resultado"></div>
+</div>
+
+<script>
+    function calcularJurosCompostos() {
+        const principal = parseFloat(document.getElementById('principal').value);
+        const rate = parseFloat(document.getElementById('rate').value);
+        const period = parseFloat(document.getElementById('period').value);
+        const unit = document.getElementById('unit').value;
+
+        if (isNaN(principal) || isNaN(rate) || isNaN(period)) {
+            document.getElementById('resultado').innerText = "Por favor, preencha todos os campos corretamente.";
+            return;
+        }
+
+        const taxaDecimal = rate / 100;
+        let montante, juros, taxaEquivalente;
+
+        if (unit === "anos") {
+            // Cálculo para anos
+            montante = principal * Math.pow(1 + taxaDecimal, period);
+            juros = montante - principal;
+
+            // Converter taxa anual para mensal
+            taxaEquivalente = (Math.pow(1 + taxaDecimal, 1 / 12) - 1) * 100;
+            document.getElementById('resultado').innerText = 
+                `Montante Final: R$ ${montante.toFixed(2)}\nJuros Acumulados: R$ ${juros.toFixed(2)}\nTaxa Mensal Equivalente: ${taxaEquivalente.toFixed(2)}%`;
+        } else {
+            // Cálculo para meses
+            montante = principal * Math.pow(1 + taxaDecimal, period);
+            juros = montante - principal;
+
+            // Converter taxa mensal para anual
+            taxaEquivalente = (Math.pow(1 + taxaDecimal, 12) - 1) * 100;
+            document.getElementById('resultado').innerText = 
+                `Montante Final: R$ ${montante.toFixed(2)}\nJuros Acumulados: R$ ${juros.toFixed(2)}\nTaxa Anual Equivalente: ${taxaEquivalente.toFixed(2)}%`;
+        }
+    }
+</script>
+
+</body>
+</html>
+
+  <script>
+    
+  </script>
+</body>
+</html>
